@@ -1,18 +1,29 @@
 <template>
   <div class="container-fluid bg-info bugsPage">
     <div class="row justify-content-between">
-      <div class="col-12 col-md-8 mt-md-5 mb-md-3 mx-md-5 pl-md-2">
-        <h2>CURRENT BUGS</h2>
+      <div class="col-12 col-md-8 mt-md-5 mb-0 mx-md-5 pl-md-2">
+        <h2 class="mb-0">
+          CURRENT BUGS
+        </h2>
       </div>
-      <div class="col-12 col-md-2 mt-md-5 mb-md-3 mx-md-5">
-        <button type="button" class="btn btn-info lightest-green-text" data-toggle="modal" title="Create Bug" data-target="#bug">
+      <div class="col-12 col-md-2 mt-md-5 mb-0 mx-md-5">
+        <button type="button" class="btn btn-warning" data-toggle="modal" title="Create Bug" data-target="#bug">
+          NEW BUG
+        </button>
+      </div>
+      <div class="col-11 d-md-flex justify-content-end">
+        <button type="button"
+                class="btn btn-info mr-md-4 py-0"
+                data-toggle="modal"
+                title="Create Bug"
+                data-target="#bug"
+                @click="hide-closed"
+        >
           Hide Closed
         </button>
       </div>
     </div>
-    <button type="button" class="btn btn-warning" data-toggle="modal" title="Create Bug" data-target="#bug">
-      NEW BUG
-    </button>
+
     <!-- row -->
     <div class="row justify-content-center">
       <div class=" col-11 card" style="width: 18rem;">
@@ -22,7 +33,7 @@
             TITLE
           </div>
           <div class="col-3 d-inline p-0">
-            REPORTED
+            REPORTED BY
           </div>
           <div class="col-3 d-inline p-0">
             STATUS
@@ -44,6 +55,7 @@ import { onMounted, computed, reactive } from 'vue'
 import { bugsService } from '../services/BugsService'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
+
 export default {
   name: 'Bugs',
   setup() {

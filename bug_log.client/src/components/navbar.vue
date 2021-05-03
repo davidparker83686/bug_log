@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg bg-danger ">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <h1>BUG LOG</h1>
@@ -20,7 +20,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Bugs' }" class="nav-link">
-            Bugs Log
+            Current Bugs
           </router-link>
         </li>
         <!-- <li class="nav-item">

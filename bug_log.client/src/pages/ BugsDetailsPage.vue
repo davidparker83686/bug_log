@@ -56,9 +56,9 @@
       <span>No Notes</span>
     </div>
     <button type="button" title="Create Note" class="btn btn-info " data-toggle="modal" data-target="#note">
-      NEW LIST
+      New Note
     </button>
-    <!-- <noteCreationModal /> -->
+    <noteCreationModal />
   </div>
 </template>
 

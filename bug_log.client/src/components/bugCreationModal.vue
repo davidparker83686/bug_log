@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="modal dark-blue-over"
+    <div class="modal grey-over"
          id="bug"
          tabindex="-1"
          role="dialog"
@@ -27,6 +27,9 @@
                        required
                 >
               </div>
+              <!-- <div class="form-group">
+                <span>Reported By: {{ (account.name.split('@')[0]).charAt(0).toUpperCase()+ (bug.creator.name.split('@')[0]).substring(1) }}</span>
+              </div> -->
 
               <!-- <div class="form-group">
                 <label for="creator.name">Reported By:</label>
@@ -44,7 +47,7 @@
                 <input type="text"
                        class="form-control"
                        id="description"
-                       placeholder="description..."
+                       placeholder="comment..."
                        v-model="state.newBug.description"
                        required
                 >
@@ -66,13 +69,15 @@
   </div>
 </template>
 <script>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { bugsService } from '../services/BugsService'
+import { AppState } from '../AppState'
 import $ from 'jquery'
 export default {
   Name: 'BugModal',
   setup() {
     const state = reactive({
+      account: computed(() => AppState.account),
       newBug: {}
     })
     return {

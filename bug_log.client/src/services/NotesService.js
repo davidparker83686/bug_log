@@ -25,6 +25,7 @@ class NotesService {
   }
 
   async deleteNote(id) {
+    Notification.confirmAction('Are you sure you want to delete this Note?', "You won't be able to revert this!", 'warning', 'Yes, delete it!')
     await api.delete(`api/notes/${id}`)
     AppState.notes = AppState.notes.filter(l => l.id !== id)
     Notification.toast('Successfully Deleted Note', 'success')
