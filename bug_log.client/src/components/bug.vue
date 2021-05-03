@@ -1,18 +1,22 @@
 
 <template>
   <router-link :to="{name: 'BugsDetails', params: {id: bug.id}}">
-    <li class=" row board hover border-bottom">
+    <li class=" row list board hover border-bottom">
       <div class="col-3 d-inline ">
         {{ bug.title }}
       </div>
       <div class="col-3 d-inline ">
         {{ (bug.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (bug.creator.name.split('@')[0]).substring(1) }}
       </div>
-      <div class="col-3 d-inline ">
-        {{ bug.closed }}
+      <div class="col-3 d-inline closed p-0" v-if="bug.closed==true">
+        CLOSED
+      </div>
+      <div class="col-3 d-inline open p-0" v-if="bug.closed==false">
+        OPEN
       </div>
       <div class="col-3 d-inline ">
-        {{ bug.closedDate }}
+        5/1/21
+        {{ bug.timestamps }}
       </div>
     </li>
   </router-link>
@@ -59,5 +63,12 @@ export default {
 <style scoped>
 .hover:hover{
 background-color: aqua;
+}
+
+.closed{
+  color:red
+}
+.open{
+  color: green
 }
 </style>

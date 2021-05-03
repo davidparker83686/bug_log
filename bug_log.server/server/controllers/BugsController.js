@@ -3,7 +3,7 @@ import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { bugsService } from '../services/BugsService'
 import { notesService } from '../services/NotesService'
-
+import { logger } from '../utils/Logger'
 export class BugsController extends BaseController {
   constructor() {
     super('api/bugs')
@@ -20,7 +20,6 @@ export class BugsController extends BaseController {
 
   async getAllBugs(req, res, next) {
     try {
-      //
       const data = await bugsService.getAllBugs(req.params.id)
       return res.send(data)
     } catch (error) {
@@ -31,6 +30,7 @@ export class BugsController extends BaseController {
   async getOneBug(req, res, next) {
     try {
       const data = await bugsService.getOneBug(req.params.id)
+      logger.log(data)
       // data  is returning what is given back from teh service
       return res.send(data)
     } catch (error) {

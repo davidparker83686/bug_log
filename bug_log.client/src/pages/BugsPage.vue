@@ -10,37 +10,32 @@
         </button>
       </div>
     </div>
+    <button type="button" class="btn btn-warning" data-toggle="modal" title="Create Bug" data-target="#bug">
+      NEW BUG
+    </button>
     <!-- row -->
     <div class="row justify-content-center">
       <div class=" col-11 card" style="width: 18rem;">
         <!-- row -->
         <div class="card-header row">
           <div class="col-3 d-inline p-0">
-            Title
+            TITLE
           </div>
           <div class="col-3 d-inline p-0">
-            Reported
+            REPORTED
           </div>
           <div class="col-3 d-inline p-0">
-            Status
+            STATUS
           </div>
           <div class="col-3 d-inline p-0">
-            Last Modified
+            LAST MODIFIED
           </div>
         </div>
-        <!-- row end -->
-
-        <!-- row -->
-
         <bug v-for="bug in state.bugs" :key="bug.id" :bug="bug" />
-        <!-- <ul class="row list-group list-group-flush">
-        </ul> -->
-
-        <!-- row -->
       </div>
     </div>
     <!-- row end -->
-    <!-- <bugCreationModal /> -->
+    <bugCreationModal />
   </div>
 </template>
 
@@ -71,5 +66,12 @@ export default {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss" scope >
+// .list:nth-child(odd){
+// background-color: rgb(202, 127, 127) ;
+// }
+
+// li:nth-child(even){
+// background-color: rgb(202, 127, 127) ;
+// }
 </style>

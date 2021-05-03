@@ -4,11 +4,13 @@ import { BadRequest } from '../utils/Errors'
 
 class BugsService {
   async getAllBugs(query = {}) {
+    // const bugs = await dbContext.Bug.find(query)
     const bugs = await dbContext.Bug.find(query).populate('creator')
     return bugs
   }
 
   async getOneBug(id) {
+    // const bug = await dbContext.Bug.findOne({ _id: id })
     const bug = await dbContext.Bug.findOne({ _id: id }).populate('creator')
     if (!bug) {
       throw new BadRequest('Invalid Id')
