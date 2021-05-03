@@ -9,9 +9,9 @@
          data-backdrop=""
     >
       <div class="modal-dialog" role="document">
-        <div class="modal-content bg-danger">
+        <div class="modal-content bg-success">
           <div class="modal-header border-bottom-0 d-flex justify-content-center">
-            <h5 class="modal-title  text-light" id="exampleModalLabel">
+            <h5 class="modal-title text-light" id="exampleModalLabel">
               ADD A COMMENT
             </h5>
           </div>
@@ -27,16 +27,12 @@
                        required
                 >
               </div> -->
-              <!-- <div class="form-group">
-                <label for="creator.name">Reported By:</label>
-                <input type="text"
-                       class="form-control"
-                       id="creator.name"
-                       placeholder="creator.name..."
-                       v-model="state.newNote.creator.name"
-                       required
-                >
-              </div> -->
+
+              <b>
+
+                <!-- {{ (state.account.name.split('@')[0]).toUpperCase() }} -->
+                {{ state.account.name }}
+              </b>
 
               <!-- <div class="form-group">
                 <span>Reported By: {{ (account.name.split('@')[0]).charAt(0).toUpperCase()+ (bug.creator.name.split('@')[0]).substring(1) }}</span>
@@ -72,10 +68,12 @@
 import { reactive, computed } from 'vue'
 import { notesService } from '../services/NotesService'
 import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
 import $ from 'jquery'
 export default {
   Name: 'NoteModal',
   setup() {
+    const route = useRoute()
     const state = reactive({
       account: computed(() => AppState.account),
       newNote: {}
@@ -84,8 +82,10 @@ export default {
       state,
       async createNote() {
         $('#note').modal('hide')
+        state.newNote.bug = route.params.id
         await notesService.createNote(state.newNote)
         state.newNote = {}
+        await notesService.getAllNotes(route.params.id)
       }
     }
   }
@@ -95,4 +95,6 @@ export default {
 /* .hover-white:hover{
   color:rgb(255, 255, 255)
 } */
+
+/* overflowhidden */
 </style>

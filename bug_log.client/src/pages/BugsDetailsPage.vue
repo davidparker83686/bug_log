@@ -4,39 +4,51 @@
       <div class=" col-11 d-flex justify-content-between my-5 p-0">
         <h2> {{ (state.bug.title).toUpperCase() }}</h2>
         <div class="">
-          <button type="button" title="Close Details Page" class="btn btn-danger ">
+          <button type="button"
+                  class="btn btn-danger shadow"
+                  title="Close Bug"
+                  aria-label="Close Bug"
+                  v-if="state.account.id === state.bug.creatorId"
+                  @click="deleteBug"
+          >
             CLOSE
           </button>
         </div>
       </div>
 
-      <div class="col-11 d-flex justify-content-between p-0">
-        <h3>
-          REPORTED BY:
-          <br>
-          <img
-            :src="state.bug.creator.picture"
-            alt="user photo"
-            height="60"
-            class="rounded-circle"
-          />
-          {{
-            (state.bug.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (state.bug.creator.name.split('@')[0]).substring(1)
-          }}
-        </h3>
-        <div class="text-right">
-          <h3>STATUS:</h3>
-          <h3 class="col-3 d-inline closed p-0" v-if="state.bug.closed==true">
+      <div class="col-11 d-flex justify-content-between p-0 ">
+        <div>
+          <h3 class="d-none d-md-block">
+            REPORTED BY:
+          </h3>
+          <h3>
+            <img
+              :src="state.bug.creator.picture"
+              alt="user photo"
+              height="60"
+              class="rounded-circle"
+            />
+            {{
+              (state.bug.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (state.bug.creator.name.split('@')[0]).substring(1)
+            }}
+          </h3>
+        </div>
+
+        <div class="text-right d-inline">
+          <h3 class="d-none d-md-block">
+            STATUS:
+          </h3>
+          <h3 class="col-3 closed p-0" v-if="state.bug.closed==true">
             CLOSED
           </h3>
 
-          <h3 class="col-3 d-inline open p-0" v-if="state.bug.closed==false">
+          <h3 class="col-3 open p-0 mt-2" v-if="state.bug.closed==false">
             OPEN
           </h3>
         </div>
       </div>
 
-      <div class=" card rounded col-11">
+      <div class=" card shadow rounded col-11 my-2">
         <h3 class="boarder rounded">
           {{ state.bug.description }}
         </h3>
@@ -44,46 +56,29 @@
     </div>
 
     <div class="row justify-content-center">
-      <div class="col-11 my-3 d-flex justify-content-between p-0">
+      <div class="col-11 w-100 my-3 d-flex justify-content-between p-0">
         <h2>Notes</h2>
         <div>
-          <button type="button" title="Create Note" class="btn btn-info " data-toggle="modal" data-target="#note">
+          <button type="button" title="Create Note" class="btn btn-info shadow" data-toggle="modal" data-target="#note">
             New Note
           </button>
         </div>
       </div>
-      <div class="card p-0 col-11 mb-5" style="width: 18rem;">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-2">
-              Name
-            </div>
-            <div class="col-9">
-              Message
-            </div>
-            <div class="col-1">
-              Delete
-            </div>
+
+      <div class="card p-0 col-11 mb-5 shadow" style="width: 18rem;">
+        <div class="card-header row justify-content-around px-0">
+          <div class="col-3">
+            NAME
+          </div>
+          <div class="col-6">
+            MESSAGE
+          </div>
+          <div class="col-1">
+            DELETE
           </div>
         </div>
 
         <Note v-for="note in state.notes" :key="note.id" :note="note" />
-        <!--
-        <ul class="list-group list-group-flush">
-          <li class="row list-group-item" >
-            <div class="col-2">
-              {{ note.creatorId }}
-            </div>
-            <div class="col-9">
-              {{ note.body }}
-            </div>
-            <div class="col-1">
-              <button type="button" class="btn btn-danger">
-                Delete
-              </button>
-            </div>
-          </li>
-        </ul> -->
       </div>
     </div>
 
@@ -105,13 +100,19 @@ export default {
     note: {
       type: Object,
       required: true
+    },
+    bug: {
+      type: Object,
+      required: true
     }
   },
-  setup() {
+  setup(props) {
     const route = useRoute()
     const state = reactive({
       notes: computed(() => AppState.notes),
-      bug: computed(() => AppState.activeBug)
+      bug: computed(() => AppState.activeBug),
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account)
     })
     onMounted(async() => {
       try {
@@ -122,7 +123,14 @@ export default {
       }
     })
     return {
-      state
+      state,
+      async deleteBug() {
+        try {
+          await bugsService.deleteBug(props.bug.id)
+        } catch (error) {
+          logger.error(error)
+        }
+      }
     }
   }
 }

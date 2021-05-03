@@ -18,7 +18,7 @@ class BugsService {
     const res = await api.post('api/bugs', newBug)
     // better way because we donthave to make another call to the back end and will do it localy
     AppState.bugs.push(res.data)
-    router.push({ name: 'BugsDetails', params: { id: res.data.id } })
+    router.push({ name: 'BugsDetailsPage', params: { id: res.data.id } })
     Notification.toast('Successfully Created Bug', 'success')
   }
 

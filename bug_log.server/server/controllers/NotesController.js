@@ -38,6 +38,7 @@ export class NotesController extends BaseController {
       req.body.creatorId = req.userInfo.id
       logger.log(req.body)
       const data = await notesService.createNote(req.body)
+      data.creator = req.userInfo
       res.send(data)
     } catch (error) {
       next(error)

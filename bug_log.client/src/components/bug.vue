@@ -1,11 +1,11 @@
 
 <template>
-  <router-link :to="{ name: 'BugsDetailsPage', params: {id: bug.id}}">
-    <li class=" row list board hover border-bottom">
-      <div class="col-3 d-inline ">
+  <router-link :to="{name: 'BugsDetailsPage', params: {id: bug.id}}">
+    <li class=" row  list board hover border-bottom">
+      <div class="col-3  ">
         {{ bug.title }}
       </div>
-      <div class="col-3 d-inline ">
+      <div class="col-3" v-if="bug.creator">
         <img
           :src="bug.creator.picture"
           alt="user photo"
@@ -14,13 +14,13 @@
         />
         {{ (bug.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (bug.creator.name.split('@')[0]).substring(1) }}
       </div>
-      <div class="col-3 d-inline closed p-0" v-if="bug.closed==true">
+      <div class="col-3  closed p-0" v-if="bug.closed==true">
         CLOSED
       </div>
-      <div class="col-3 d-inline open p-0" v-if="bug.closed==false">
+      <div class="col-3  open p-0" v-if="bug.closed==false">
         OPEN
       </div>
-      <div class="col-3 d-inline ">
+      <div class="col-3  ">
         5/1/21
         {{ bug.timestamps }}
       </div>
@@ -70,6 +70,16 @@ export default {
 .hover:hover{
 background-color: aqua;
 }
+/* .list:nth-child(2),
+.list:nth-child(4),
+.list:nth-child(6),
+.list:nth-child(8),
+.list:nth-child(10){
+background-color: rgb(202, 127, 127) ;
+} */
+/* li:nth-child(even){
+background-color: rgb(127, 202, 177) ;
+} */
 
 .closed{
   color:red

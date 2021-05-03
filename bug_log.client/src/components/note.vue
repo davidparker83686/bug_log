@@ -1,22 +1,34 @@
 <template>
-  <li class=" row list note hover border-bottom">
-    <div class="col-3 d-inline ">
+  <li class=" row justify-content-around list note hover border-bottom">
+    <div class="col-3">
       <img
         :src="note.creator.picture"
         alt="user photo"
         height="20"
         class="rounded-circle px-2"
       />
-      {{ (note.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (note.creator.name.split('@')[0]).substring(1) }}
+
+      <!-- {{ (note.creator.name.split('@'))[0] }} -->
+      <span>
+        {{ (note.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (note.creator.name.split('@')[0]).substring(1) }}
+        <!-- {{ note.creator.name }} -->
+
+      </span>
     </div>
 
-    <div class="col-8 d-inline ">
+    <div class="col-6">
       {{ note.body }}
     </div>
 
-    <div class="col-1 d-inline ">
-      <button type="button" class="btn btn-danger">
-        Delete Note
+    <div class="col-1 p-0 ">
+      <button type="button"
+              class="btn btn-none text-danger"
+              title="Delete Comment"
+              aria-label="Delete Comment"
+              @click="deleteNote"
+              v-if="state.account.id === note.creatorId"
+      >
+        <i class="fas fa-trash-alt"></i>
       </button>
     </div>
   </li>
@@ -26,6 +38,7 @@ import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { notesService } from '../services/NotesService'
 import { logger } from '../utils/Logger'
+import Notification from '../utils/Notification'
 export default {
   name: 'Note',
   props: {
@@ -34,9 +47,11 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
-      notes: computed(() => AppState.notes)
+      notes: computed(() => AppState.notes),
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account)
     })
     return {
       state,
@@ -47,9 +62,13 @@ export default {
           logger.error(error)
         }
       },
-      async deleteNote(id) {
+
+      // not passing param into top level because were not passing anything from the template and are passing in params that are props.note.id into our lower level using props, so dont forget to pass 'props' into our setup() ex: setup(props)
+      async deleteNote() {
         try {
-          await notesService.deleteNote(id)
+          if (await Notification.confirmAction('Are you sure you want to delete this Note?', "You won't be able to revert this!", 'warning', 'Yes, delete it!')) {
+            await notesService.deleteNote(props.note.id)
+          }
         } catch (error) {
           logger.error(error)
         }

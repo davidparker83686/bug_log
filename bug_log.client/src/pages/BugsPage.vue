@@ -8,7 +8,7 @@
       </div>
       <div class="col-12 col-md-1 mt-md-5 mb-0 mx-md-5">
         <button type="button"
-                class="btn btn-warning"
+                class="btn btn-warning shadow"
                 title="Report New Bug"
                 aria="Report New Bug"
                 data-toggle="modal"
@@ -49,7 +49,7 @@
         <Bug v-for="bug in state.bugs" :key="bug.id" :bug="bug" />
       </div>
     </div>
-    <!-- row end -->
+
     <bugCreationModal />
   </div>
 </template>
@@ -83,15 +83,15 @@ export default {
 </script>
 
 <style lang="scss" scope >
-.list:nth-child(2),
-.list:nth-child(4),
-.list:nth-child(6),
-.list:nth-child(8),
-.list:nth-child(10){
-background-color: rgb(202, 127, 127) ;
-}
+// .list:nth-child(1),
+// .list:nth-child(4),
+// .list:nth-child(6),
+// .list:nth-child(8),
+// .list:nth-child(10){
+// background-color: rgb(202, 127, 127) ;
+// }
 .list:nth-child(even){
-background-color: rgb(202, 127, 127) ;
+background-color: rgb(127, 197, 202) ;
 }
 
 // li:nth-child(even){
