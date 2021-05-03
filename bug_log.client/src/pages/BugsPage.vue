@@ -1,22 +1,26 @@
 <template>
   <div class="container-fluid bg-info bugsPage">
-    <div class="row justify-content-between">
-      <div class="col-12 col-md-8 mt-md-5 mb-0 mx-md-5 pl-md-2">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-9 mt-md-5 mb-0 mx-md-5 pl-md-2">
         <h2 class="mb-0">
           CURRENT BUGS
         </h2>
       </div>
-      <div class="col-12 col-md-2 mt-md-5 mb-0 mx-md-5">
-        <button type="button" class="btn btn-warning" data-toggle="modal" title="Create Bug" data-target="#bug">
-          NEW BUG
+      <div class="col-12 col-md-1 mt-md-5 mb-0 mx-md-5">
+        <button type="button"
+                class="btn btn-warning"
+                title="Report New Bug"
+                aria="Report New Bug"
+                data-toggle="modal"
+                data-target="#bug"
+        >
+          <b>+</b>
         </button>
       </div>
-      <div class="col-11 d-md-flex justify-content-end">
+      <div class="col-10 d-md-flex justify-content-end">
         <button type="button"
-                class="btn btn-info mr-md-4 py-0"
-                data-toggle="modal"
-                title="Create Bug"
-                data-target="#bug"
+                class="btn btn-info py-0"
+                title="Hide Closed Bugs"
                 @click="hide"
         >
           Hide Closed
@@ -42,7 +46,7 @@
             LAST MODIFIED
           </div>
         </div>
-        <bug v-for="bug in state.bugs" :key="bug.id" :bug="bug" />
+        <Bug v-for="bug in state.bugs" :key="bug.id" :bug="bug" />
       </div>
     </div>
     <!-- row end -->
@@ -79,9 +83,16 @@ export default {
 </script>
 
 <style lang="scss" scope >
-// .list:nth-child(odd){
-// background-color: rgb(202, 127, 127) ;
-// }
+.list:nth-child(2),
+.list:nth-child(4),
+.list:nth-child(6),
+.list:nth-child(8),
+.list:nth-child(10){
+background-color: rgb(202, 127, 127) ;
+}
+.list:nth-child(even){
+background-color: rgb(202, 127, 127) ;
+}
 
 // li:nth-child(even){
 // background-color: rgb(202, 127, 127) ;

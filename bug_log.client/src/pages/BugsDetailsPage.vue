@@ -1,36 +1,58 @@
 <template>
   <div class="container-fluid bg-warning bugsDetailsPage">
-    <div class="row" v-if="state.bug">
-      <div class=" col-12">
-        <h2>TITLE: <br> {{ (state.bug.title).toUpperCase() }}</h2>
+    <div class="row justify-content-center" v-if="state.bug">
+      <div class=" col-11 d-flex justify-content-between my-5 p-0">
+        <h2> {{ (state.bug.title).toUpperCase() }}</h2>
+        <div class="">
+          <button type="button" title="Close Details Page" class="btn btn-danger ">
+            CLOSE
+          </button>
+        </div>
       </div>
-      <div class="col-12 d-flex justify-content-between">
-        <h3>REPORTED BY: {{ state.bug.creatorId }}</h3>
-        <div>
+
+      <div class="col-11 d-flex justify-content-between p-0">
+        <h3>
+          REPORTED BY:
+          <br>
+          <img
+            :src="state.bug.creator.picture"
+            alt="user photo"
+            height="60"
+            class="rounded-circle"
+          />
+          {{
+            (state.bug.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (state.bug.creator.name.split('@')[0]).substring(1)
+          }}
+        </h3>
+        <div class="text-right">
           <h3>STATUS:</h3>
-          <h3 class="col-3 d-inline closed p-0" v-if="bug.closed==true">
+          <h3 class="col-3 d-inline closed p-0" v-if="state.bug.closed==true">
             CLOSED
           </h3>
 
-          <h3 class="col-3 d-inline open p-0" v-if="bug.closed==false">
+          <h3 class="col-3 d-inline open p-0" v-if="state.bug.closed==false">
             OPEN
           </h3>
         </div>
       </div>
 
-      <h3 class="boarder rounded">
-        {{ state.bug.description }}
-      </h3>
-      <div class="col-11 d-flex justify-content-start">
-        <button type="button" title="Close Details Page" class="btn btn-danger ">
-          CLOSE
-        </button>
+      <div class=" card rounded col-11">
+        <h3 class="boarder rounded">
+          {{ state.bug.description }}
+        </h3>
       </div>
     </div>
 
-    <div class="row" v-if="state.notes">
-      <h2>Notes</h2>
-      <div class="card col-10" style="width: 18rem;">
+    <div class="row justify-content-center">
+      <div class="col-11 my-3 d-flex justify-content-between p-0">
+        <h2>Notes</h2>
+        <div>
+          <button type="button" title="Create Note" class="btn btn-info " data-toggle="modal" data-target="#note">
+            New Note
+          </button>
+        </div>
+      </div>
+      <div class="card p-0 col-11 mb-5" style="width: 18rem;">
         <div class="card-header">
           <div class="row">
             <div class="col-2">
@@ -44,8 +66,11 @@
             </div>
           </div>
         </div>
+
+        <Note v-for="note in state.notes" :key="note.id" :note="note" />
+        <!--
         <ul class="list-group list-group-flush">
-          <li class="row list-group-item" v-for="note in state.notes" :key="note.id" :note="note">
+          <li class="row list-group-item" >
             <div class="col-2">
               {{ note.creatorId }}
             </div>
@@ -58,15 +83,10 @@
               </button>
             </div>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
-    <div class="row" v-else>
-      <span>No Notes</span>
-    </div>
-    <button type="button" title="Create Note" class="btn btn-info " data-toggle="modal" data-target="#note">
-      New Note
-    </button>
+
     <noteCreationModal />
   </div>
 </template>
@@ -80,7 +100,7 @@ import { bugsService } from '../services/BugsService'
 import { useRoute } from 'vue-router'
 // import { tasksService } from "../services/TasksService"
 export default {
-  name: 'BugsDetails',
+  name: 'BugsDetailsPage',
   props: {
     note: {
       type: Object,
@@ -122,4 +142,15 @@ export default {
 //     max-width: 100vw;// display: inline-block;
 // }
 // }
+
+.hover:hover{
+background-color: peachpuff;
+}
+
+.closed{
+  color:red
+}
+.open{
+  color: green
+}
 </style>

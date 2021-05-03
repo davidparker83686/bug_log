@@ -37,9 +37,10 @@
                        required
                 >
               </div> -->
-              <div class="form-group">
+
+              <!-- <div class="form-group">
                 <span>Reported By: {{ (account.name.split('@')[0]).charAt(0).toUpperCase()+ (bug.creator.name.split('@')[0]).substring(1) }}</span>
-              </div>
+              </div> -->
 
               <div class="form-group">
                 <label for="body">Comment:</label>

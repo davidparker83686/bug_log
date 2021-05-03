@@ -14,14 +14,14 @@ const routes = [
   {
     path: '/bugs',
     name: 'Bugs',
-    component: loadPage('BugsPage'),
-    beforeEnter: authGuard
+    component: loadPage('BugsPage')
+    // beforeEnter: authGuard
   },
   {
     path: '/bugsDetails/:id',
-    name: 'BugsDetails',
-    component: loadPage('BugsDetailsPage'),
-    beforeEnter: authGuard
+    name: 'BugsDetailsPage',
+    component: loadPage('BugsDetailsPage')
+    // beforeEnter: authGuard
   },
   {
     path: '/about',
