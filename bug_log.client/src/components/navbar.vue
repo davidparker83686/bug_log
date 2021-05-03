@@ -41,6 +41,8 @@
         <div class="dropdown" v-else>
           <div
             class="dropdown-toggle"
+            style="cursor: pointer"
+            tite="Log in Log out"
             @click="state.dropOpen = !state.dropOpen"
           >
             <img
@@ -49,7 +51,7 @@
               height="40"
               class="rounded-circle"
             />
-            <span class="mx-3">{{ (user.name.split('@')[0]).toUpperCase() }}</span>
+            <span class="mx-3">{{ (user.name.split('@')[0]).toUpperCase() }} </span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"

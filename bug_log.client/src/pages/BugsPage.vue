@@ -17,7 +17,7 @@
                 data-toggle="modal"
                 title="Create Bug"
                 data-target="#bug"
-                @click="hide-closed"
+                @click="hide"
         >
           Hide Closed
         </button>

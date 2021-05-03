@@ -6,7 +6,16 @@
       </div>
       <div class="col-12 d-flex justify-content-between">
         <h3>REPORTED BY: {{ state.bug.creatorId }}</h3>
-        <h3>STATUS: {{ state.bug.closed }}</h3>
+        <div>
+          <h3>STATUS:</h3>
+          <h3 class="col-3 d-inline closed p-0" v-if="bug.closed==true">
+            CLOSED
+          </h3>
+
+          <h3 class="col-3 d-inline open p-0" v-if="bug.closed==false">
+            OPEN
+          </h3>
+        </div>
       </div>
 
       <h3 class="boarder rounded">
