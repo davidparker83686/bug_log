@@ -11,8 +11,11 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content bg-success">
           <div class="modal-header border-bottom-0 d-flex justify-content-center">
-            <h5 class="modal-title  text-light" id="exampleModalLabel">
-              REPORT A NEW BUG
+            <h5 class="modal-title  blacktext" id="exampleModalLabel">
+              <b>
+
+                REPORT A NEW BUG
+              </b>
             </h5>
           </div>
           <div class="modal-body">
@@ -57,7 +60,7 @@
                 <button type="submit" class="btn hover-white btn-warning border-0">
                   Create
                 </button>
-                <button type="button" class="btn  btn-danger" data-dismiss="modal">
+                <button type="button" class="btn text-white btn-danger" data-dismiss="modal">
                   Close
                 </button>
               </div>
@@ -95,4 +98,8 @@ export default {
 /* .hover-white:hover{
   color:rgb(255, 255, 255)
 } */
+
+.blacktext{
+  color:rgb(19, 19, 19)
+}
 </style>

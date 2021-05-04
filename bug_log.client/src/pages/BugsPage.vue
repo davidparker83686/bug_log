@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid bg-secondary bugsPage">
     <div class="row justify-content-center">
-      <div class="col-10 col-md-9 mt-md-5 mb-0 mx-md-5 pl-md-2">
+      <div class="col-12 col-md-8 my-md-5 my-2 mb-0 mx-md-5 pl-md-2">
         <h2 class="mb-0 text-dark">
           <b>
             CURRENT BUGS
@@ -9,15 +9,19 @@
           </b>
         </h2>
       </div>
-      <div class="col-2 col-md-1 mt-md-5 mb-0 mx-md-5">
+      <div class="col-12 col-md-2 mt-md-5 mb-0 px-md-0 px-3 my-md-5 my-2 mb-0 mx-md-5 md-text-right">
         <button type="button"
-                class="btn btn-none text-danger shadow-none"
+                class="btn btn-danger text-white shadow"
                 title="Report New Bug"
                 aria="Report New Bug"
                 data-toggle="modal"
                 data-target="#bug"
         >
-          <i class="fas fa-plus"></i>
+          <b>
+
+            REPORT A BUG
+          </b>
+          <!-- <i class="fas fa-plus"></i> -->
         </button>
       </div>
       <div class="col-12 col-md-10 d-md-flex justify-content-end">
@@ -33,16 +37,16 @@
                  value="option1"
                  checked
           >
-          <label class="form-check-label text-dark twenty " for="exampleRadios1">
+          <!-- <label class="form-check-label text-dark twenty " for="exampleRadios1">
             Hide/Show Closed Bugs
-          </label>
+          </label> -->
         </div>
       </div>
     </div>
 
     <!-- row -->
     <div class="row justify-content-center">
-      <div class=" col-11 card" style="width: 18rem;">
+      <div class=" col-11 card" style="width: 18rem">
         <!-- row -->
         <div class="card-header bg-dark text-primary row">
           <div class="col-4 d-inline col-md-3 d-inline p-0 twenty ">
@@ -66,7 +70,9 @@
             </b>
           </div>
         </div>
-        <Bug v-for="bug in state.bugs" :key="bug.id" :bug="bug" />
+        <div class="scroll">
+          <Bug v-for="bug in state.bugs" :key="bug.id" :bug="bug" />
+        </div>
       </div>
     </div>
 
@@ -127,4 +133,18 @@ export default {
 // li:nth-child(even){
 // background-color: rgb(202, 127, 127) ;
 // }
+
+.scroll{
+    overflow-y: scroll;
+    // overflow-:auto;
+    // flex-wrap: nowrap;
+    max-height: 33vw;// display: inline-block;
+}
+
+@media screen and (max-width:760px){
+  .scroll{
+    overflow-y: scroll;
+    max-height: 75vw;// display: inline-block;
+  }
+}
 </style>

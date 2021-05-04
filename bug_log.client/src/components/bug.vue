@@ -1,7 +1,7 @@
 
 <template>
   <router-link :to="{name: 'BugsDetailsPage', params: {id: bug.id}}">
-    <li class=" row  list board hover border-bottom">
+    <li class=" row list board hover border-bottom">
       <div class="col-8 col-md-3 twenty text-dark">
         {{ bug.title }}
       </div>
