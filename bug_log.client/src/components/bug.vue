@@ -21,8 +21,9 @@
         OPEN
       </div>
       <div class="col-3  ">
-        5/1/21
-        {{ bug.timestamps }}
+        <!-- closedDate
+        timestamps -->
+        {{ Date(bug.updatedAt).split('18')[0]}}
       </div>
     </li>
   </router-link>
@@ -40,10 +41,15 @@ export default {
       type: Object,
       required: true
     }
+    // note: {
+    //   type: Object,
+    //   required: true
+    // }
   },
   setup() {
     const state = reactive({
-      bugs: computed(() => AppState.bugs)
+      bugs: computed(() => AppState.bugs),
+      notes: computed(() => AppState.notes)
     })
     return {
       state,

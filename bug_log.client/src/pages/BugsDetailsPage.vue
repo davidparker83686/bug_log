@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <div class="card p-0 col-11 mb-5 shadow" style="width: 18rem;">
+      <div class="card overflow p-0 col-11 mb-5 shadow" style="width: 18rem;">
         <div class="card-header row justify-content-around px-0">
           <div class="col-3">
             NAME
@@ -126,7 +126,7 @@ export default {
       state,
       async deleteBug() {
         try {
-          await bugsService.deleteBug(props.bug.id)
+          await bugsService.deleteBug(state.bug.id)
         } catch (error) {
           logger.error(error)
         }
@@ -150,6 +150,9 @@ export default {
 //     max-width: 100vw;// display: inline-block;
 // }
 // }
+.overflow{
+  overflow: hidden;
+}
 
 .hover:hover{
 background-color: peachpuff;

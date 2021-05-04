@@ -2,11 +2,18 @@ import { AppState } from '../AppState'
 import { api } from './AxiosService'
 import Notification from '../utils/Notification'
 import router from '../router.js'
+import { logger } from '../utils/Logger'
 
 class BugsService {
   async getAllBugs() {
     const res = await api.get('api/bugs')
     AppState.bugs = res.data
+    logger.log(res.data)
+  }
+
+  async getOpenBugs() {
+    const res = await api.get('api/bugs')
+    AppState.bugs = res.data.filter(l => l.closed === false)
   }
 
   async getOneBug(id) {

@@ -18,13 +18,22 @@
         </button>
       </div>
       <div class="col-10 d-md-flex justify-content-end">
-        <button type="button"
-                class="btn btn-info py-0"
-                title="Hide Closed Bugs"
-                @click="hide"
+        <div class="form-check"
+             title="Show Open Bugs"
+             aria="Show Open Bugs"
+             @click="getOpenBugs"
         >
-          Hide Closed
-        </button>
+          <input class="form-check-input"
+                 type="radio"
+                 name="exampleRadios"
+                 id="exampleRadios1"
+                 value="option1"
+                 checked
+          >
+          <label class="form-check-label" for="exampleRadios1">
+            Hide/Show Closed Bugs
+          </label>
+        </div>
       </div>
     </div>
 
@@ -76,7 +85,14 @@ export default {
       }
     })
     return {
-      state
+      state,
+      async getOpenBugs() {
+        try {
+          await bugsService.getOpenBug()
+        } catch (error) {
+          logger.error(error)
+        }
+      }
     }
   }
 }
@@ -90,9 +106,9 @@ export default {
 // .list:nth-child(10){
 // background-color: rgb(202, 127, 127) ;
 // }
-.list:nth-child(even){
-background-color: rgb(127, 197, 202) ;
-}
+// .list:nth-child(even){
+// background-color: rgb(127, 197, 202) ;
+// }
 
 // li:nth-child(even){
 // background-color: rgb(202, 127, 127) ;
