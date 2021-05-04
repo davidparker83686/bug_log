@@ -2,10 +2,10 @@
 <template>
   <router-link :to="{name: 'BugsDetailsPage', params: {id: bug.id}}">
     <li class=" row  list board hover border-bottom">
-      <div class="col-3  ">
+      <div class="col-8 col-md-3 twenty text-dark">
         {{ bug.title }}
       </div>
-      <div class="col-3" v-if="bug.creator">
+      <div class="col-0 col-md-3 twenty d-none d-md-block text-dark" v-if="bug.creator">
         <img
           :src="bug.creator.picture"
           alt="user photo"
@@ -14,16 +14,19 @@
         />
         {{ (bug.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (bug.creator.name.split('@')[0]).substring(1) }}
       </div>
-      <div class="col-3  closed p-0" v-if="bug.closed==true">
+      <div class="col-3 col-md-3 twenty closed p-0" v-if="bug.closed==true">
         CLOSED
       </div>
-      <div class="col-3  open p-0" v-if="bug.closed==false">
+      <div class="col-3 col-md-3 twenty open p-0" v-if="bug.closed==false">
         OPEN
       </div>
-      <div class="col-3  ">
+      <div class="col-0 col-md-3 p-0 twenty d-none d-md-block text-dark">
         <!-- closedDate
         timestamps -->
-        {{ Date(bug.updatedAt).split('18')[0]}}
+        {{ Date(bug.updatedAt).split(' ')[0] }},
+        {{ Date(bug.updatedAt).split(' ')[1] }} /
+        {{ Date(bug.updatedAt).split(' ')[2] }} /
+        {{ Date(bug.updatedAt).split(' ')[3] }}
       </div>
     </li>
   </router-link>
@@ -74,7 +77,7 @@ export default {
 </script>
 <style scoped>
 .hover:hover{
-background-color: aqua;
+background-color: rgb(255, 188, 157);
 }
 /* .list:nth-child(2),
 .list:nth-child(4),
@@ -92,5 +95,8 @@ background-color: rgb(127, 202, 177) ;
 }
 .open{
   color: green
+}
+.twenty{
+  font-size: 20px;
 }
 </style>

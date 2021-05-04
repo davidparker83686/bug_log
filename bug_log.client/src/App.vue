@@ -6,7 +6,7 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-none text-center">
+    <div class="bg-secondary text-center">
       BUG LOG / 2022
     </div>
   </footer>

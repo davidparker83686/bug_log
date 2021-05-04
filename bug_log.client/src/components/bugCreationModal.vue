@@ -9,7 +9,7 @@
          data-backdrop=""
     >
       <div class="modal-dialog" role="document">
-        <div class="modal-content bg-danger">
+        <div class="modal-content bg-success">
           <div class="modal-header border-bottom-0 d-flex justify-content-center">
             <h5 class="modal-title  text-light" id="exampleModalLabel">
               REPORT A NEW BUG
@@ -54,10 +54,10 @@
               </div>
 
               <div class="modal-footer d-flex justify-content-around">
-                <button type="submit" class="btn hover-white btn-primary border-0">
+                <button type="submit" class="btn hover-white btn-warning border-0">
                   Create
                 </button>
-                <button type="button" class="btn  btn-warning" data-dismiss="modal">
+                <button type="button" class="btn  btn-danger" data-dismiss="modal">
                   Close
                 </button>
               </div>

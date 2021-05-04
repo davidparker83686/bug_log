@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-danger ">
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div>
+      <i class="fas fa-spider text-primary logo px-3" title="cute bug logo"></i>
+    </div>
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <h1>BUG LOG</h1>
@@ -20,7 +23,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Bugs' }" class="nav-link">
-            Current Bugs
+            <h2>Current Bugs</h2>
           </router-link>
         </li>
         <!-- <li class="nav-item">
@@ -51,7 +54,7 @@
               height="40"
               class="rounded-circle"
             />
-            <span class="mx-3">{{ (user.name.split('@')[0]).toUpperCase() }} </span>
+            <span class="mx-3 text-white">{{ (user.name.split('@')[0]).toUpperCase() }} </span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
@@ -121,5 +124,8 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+.logo{
+  font-size: 2rem;
 }
 </style>

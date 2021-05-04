@@ -1,6 +1,6 @@
 <template>
   <li class=" row justify-content-around list note hover border-bottom">
-    <div class="col-3">
+    <div class="col-4 col-md-3">
       <img
         :src="note.creator.picture"
         alt="user photo"
@@ -9,20 +9,20 @@
       />
 
       <!-- {{ (note.creator.name.split('@'))[0] }} -->
-      <span>
+      <span class="twenty text-dark">
         {{ (note.creator.name.split('@')[0]).charAt(0).toUpperCase()+ (note.creator.name.split('@')[0]).substring(1) }}
         <!-- {{ note.creator.name }} -->
 
       </span>
     </div>
 
-    <div class="col-6">
+    <div class="col-6 px-0 twenty text-dark">
       {{ note.body }}
     </div>
 
-    <div class="col-1 p-0 ">
+    <div class="col-1 p-0  d-md-flex justify-content-center">
       <button type="button"
-              class="btn btn-none text-danger"
+              class="btn btn-none text-danger px-1"
               title="Delete Comment"
               aria-label="Delete Comment"
               @click="deleteNote"
@@ -79,7 +79,7 @@ export default {
 </script>
 <style scoped>
 .hover:hover{
-background-color: peachpuff;
+background-color: rgb(255, 188, 157);
 }
 
 .closed{
@@ -87,5 +87,8 @@ background-color: peachpuff;
 }
 .open{
   color: green
+}
+.twenty{
+  font-size: 20px;
 }
 </style>

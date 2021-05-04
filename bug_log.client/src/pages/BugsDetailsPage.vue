@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid bg-warning bugsDetailsPage">
+  <div class="container-fluid bg-secondary bugsDetailsPage">
     <div class="row justify-content-center" v-if="state.bug">
-      <div class=" col-11 d-flex justify-content-between my-5 p-0">
+      <div class=" col-11 d-flex justify-content-between my-2 my-md-5 p-0 text-dark">
         <h2> {{ (state.bug.title).toUpperCase() }}</h2>
         <div class="">
           <button type="button"
@@ -18,10 +18,10 @@
 
       <div class="col-11 d-flex justify-content-between p-0 ">
         <div>
-          <h3 class="d-none d-md-block">
+          <h3 class="d-none d-md-block text-dark">
             REPORTED BY:
           </h3>
-          <h3>
+          <h3 class="text-dark">
             <img
               :src="state.bug.creator.picture"
               alt="user photo"
@@ -35,7 +35,7 @@
         </div>
 
         <div class="text-right d-inline">
-          <h3 class="d-none d-md-block">
+          <h3 class="d-none d-md-block text-dark">
             STATUS:
           </h3>
           <h3 class="col-3 closed p-0" v-if="state.bug.closed==true">
@@ -49,32 +49,41 @@
       </div>
 
       <div class=" card shadow rounded col-11 my-2">
-        <h3 class="boarder rounded">
+        <h3 class="boarder rounded text-dark">
           {{ state.bug.description }}
         </h3>
       </div>
     </div>
 
     <div class="row justify-content-center">
-      <div class="col-11 w-100 my-3 d-flex justify-content-between p-0">
+      <div class="col-11 w-100 my-1 my-md-3 d-flex justify-content-between p-0 text-dark">
         <h2>Notes</h2>
         <div>
-          <button type="button" title="Create Note" class="btn btn-info shadow" data-toggle="modal" data-target="#note">
+          <button type="button" title="Create Note" class="btn btn-primary shadow" data-toggle="modal" data-target="#note">
             New Note
           </button>
         </div>
       </div>
 
       <div class="card overflow p-0 col-11 mb-5 shadow" style="width: 18rem;">
-        <div class="card-header row justify-content-around px-0">
-          <div class="col-3">
-            NAME
+        <div class="card-header bg-dark row justify-content-around px-0">
+          <div class="col-3 col-md-3 twenty text-primary">
+            <b>
+
+              NAME
+            </b>
           </div>
-          <div class="col-6">
-            MESSAGE
+          <div class="col-6 col-md-6 px-0 twenty text-primary">
+            <b>
+
+              MESSAGE
+            </b>
           </div>
-          <div class="col-1">
-            DELETE
+          <div class="col-1 d-none d-md-block twenty text-primary">
+            <b>
+
+              DELETE
+            </b>
           </div>
         </div>
 
@@ -163,5 +172,8 @@ background-color: peachpuff;
 }
 .open{
   color: green
+}
+.twenty{
+  font-size: 20px;
 }
 </style>

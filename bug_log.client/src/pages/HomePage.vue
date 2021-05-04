@@ -1,6 +1,6 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <span> Bug Log where you come to get your bugs logged</span>
+  <div class="home bg-secondary flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+    <span class="text-dark large"> Bug Log where you come to log your bugs.<i class="fas fa-spider" title="bugs"></i></span>
   </div>
 </template>
 
@@ -17,6 +17,9 @@ export default {
   > img{
     height: 200px;
     width: 200px;
+  }
+  .large{
+    font-size: 30px;
   }
 }
 </style>
